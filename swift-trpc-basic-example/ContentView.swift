@@ -44,6 +44,7 @@ struct ContentView: View {
         // Uncomment if want to try the smell of raw swift code with tRPC
 //        self.todoViewModel.authViewModel = self.authViewModel
         
+        //     Uncomment if want to use beautiful code
         self.serverHealthViewModel = ServerHealthViewModel(trpcClient: trpcClient)
         self.authViewModel = AuthViewModel(trpcClient: trpcClient)
         self.todoViewModel = TodoViewModel(trpcClient: trpcClient)
