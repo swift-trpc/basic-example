@@ -8,9 +8,10 @@
 import Foundation
 import swift_trpc
 
-class AuthViewModel: ObservableObject {
+class AuthViewModel: AuthViewModelProtocol {
     private var trpcClient: TrpcClient
-    
+    private let defaults: UserDefaults
+
     @Published
     var username: String = ""
     
@@ -20,12 +21,24 @@ class AuthViewModel: ObservableObject {
     @Published
     var authenticated: Bool?
     
-    init(trpcClient: TrpcClient) {
+    public private(set) var authToken: String? {
+        get { defaults.string(forKey: "auth_token") }
+        set {
+            if let value = newValue {
+                defaults.set(value, forKey: "auth_token")
+            } else {
+                defaults.removeObject(forKey: "auth_token")
+            }
+        }
+    }
+
+    init(trpcClient: TrpcClient, defaults: UserDefaults = .standard) {
         self.trpcClient = trpcClient
+        self.defaults = defaults
     }
     
     func fetchAuthentication() async throws {
-        guard let authToken = UserDefaults.standard.string(forKey: "auth_token") else {
+        guard let authToken else {
             await MainActor.run {
                 self.authenticated = false
             }
@@ -81,7 +94,7 @@ class AuthViewModel: ObservableObject {
             return
         }
         
-        UserDefaults.standard.set(loginResponse.token, forKey: "auth_token")
+        self.authToken = loginResponse.token
         
         try await fetchAuthentication()
     }
@@ -90,7 +103,7 @@ class AuthViewModel: ObservableObject {
         self.currentUser = nil
         self.authenticated = false
         
-        UserDefaults.standard.removeObject(forKey: "auth_token")
+        self.authToken = nil
         trpcClient.baseHeaders.removeValue(forKey: "authorization")
     }
 }

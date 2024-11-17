@@ -10,8 +10,21 @@ import Combine
 import swift_trpc
 
 struct ContentView: View {
+    private static let serverUrl = "http://localhost:8200"
+    
     let trpcClient: TrpcClientProtocol
     
+    // Uncomment if want to try the smell of raw swift code with tRPC
+//    @ObservedObject
+//    var serverHealthViewModel = RawServerHealthViewModel(serverUrl: ContentView.serverUrl)
+//    
+//    @ObservedObject
+//    var authViewModel = RawAuthViewModel(serverUrl: ContentView.serverUrl)
+//    
+//    @ObservedObject
+//    var todoViewModel = RawTodoViewModel(serverUrl: ContentView.serverUrl)
+    
+//     Uncomment if want to use beautiful code
     @ObservedObject
     var serverHealthViewModel: ServerHealthViewModel
     
@@ -24,9 +37,13 @@ struct ContentView: View {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        let trpcClient = TrpcClient(serverUrl: "http://localhost:8200")
+        let trpcClient = TrpcClient(serverUrl: ContentView.serverUrl)
         
         self.trpcClient = trpcClient
+        
+        // Uncomment if want to try the smell of raw swift code with tRPC
+//        self.todoViewModel.authViewModel = self.authViewModel
+        
         self.serverHealthViewModel = ServerHealthViewModel(trpcClient: trpcClient)
         self.authViewModel = AuthViewModel(trpcClient: trpcClient)
         self.todoViewModel = TodoViewModel(trpcClient: trpcClient)
@@ -159,7 +176,7 @@ struct ContentView: View {
     @ViewBuilder
     var TodoList: some View {
         if let todos = self.todoViewModel.todos, todos.count > 0 {
-            ForEach(Array(todos.enumerated()), id: \.offset) { (index, todo) in
+            ForEach(Array(todos.enumerated()), id: \.element.id) { (index, todo) in
                 Toggle(isOn: $todoViewModel.todoToggles[index]) {
                     Text(todo.title)
                 }.onChange(of: todoViewModel.todoToggles[index]) { newValue in

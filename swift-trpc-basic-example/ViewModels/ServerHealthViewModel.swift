@@ -8,7 +8,7 @@
 import Foundation
 import swift_trpc
 
-class ServerHealthViewModel: ObservableObject {
+class ServerHealthViewModel: ServerHealthViewModelProtocol {
     private let trpcClient: TrpcClientProtocol
     
     @Published

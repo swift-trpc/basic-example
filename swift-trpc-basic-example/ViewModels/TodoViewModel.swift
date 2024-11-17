@@ -8,7 +8,7 @@
 import Foundation
 import swift_trpc
 
-class TodoViewModel: ObservableObject {
+class TodoViewModel: TodoViewModelProtocol {
     private var trpcClient: TrpcClient
     
     @Published
