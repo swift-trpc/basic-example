@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		967FE67B2CEA2D7D000C8682 /* swift-trpc in Frameworks */ = {isa = PBXBuildFile; productRef = 967FE67A2CEA2D7D000C8682 /* swift-trpc */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		967FE6682CEA2D41000C8682 /* swift-trpc-basic-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-trpc-basic-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				967FE67B2CEA2D7D000C8682 /* swift-trpc in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "swift-trpc-basic-example";
 			packageProductDependencies = (
+				967FE67A2CEA2D7D000C8682 /* swift-trpc */,
 			);
 			productName = "swift-trpc-basic-example";
 			productReference = 967FE6682CEA2D41000C8682 /* swift-trpc-basic-example.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 967FE65F2CEA2D41000C8682;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				967FE6792CEA2D7D000C8682 /* XCRemoteSwiftPackageReference "swift-trpc" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 967FE6692CEA2D41000C8682 /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		967FE6792CEA2D7D000C8682 /* XCRemoteSwiftPackageReference "swift-trpc" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swift-trpc/swift-trpc";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		967FE67A2CEA2D7D000C8682 /* swift-trpc */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 967FE6792CEA2D7D000C8682 /* XCRemoteSwiftPackageReference "swift-trpc" */;
+			productName = "swift-trpc";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 967FE6602CEA2D41000C8682 /* Project object */;
 }

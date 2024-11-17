@@ -1,0 +1,15 @@
+{
+  "originHash" : "66d65169b13741af88b2f9716431d231920b58dbda0d2c2a68a70423de3b14c4",
+  "pins" : [
+    {
+      "identity" : "swift-trpc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-trpc/swift-trpc",
+      "state" : {
+        "branch" : "main",
+        "revision" : "49f8170d29a2e4a3b000aa32e9fa0f310e8184f8"
+      }
+    }
+  ],
+  "version" : 3
+}
