@@ -107,7 +107,6 @@ struct ContentView: View {
                 .textInputAutocapitalization(.none)
             Spacer()
             Button(action: {
-                print("Logging in...")
                 Task {
                     try await authViewModel.login()
                 }

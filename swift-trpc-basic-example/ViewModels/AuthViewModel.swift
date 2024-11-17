@@ -43,8 +43,6 @@ class AuthViewModel: ObservableObject {
             }
             return
         }
-        
-        print(result)
 
         guard let currentUser = result.result else {
             print("Auth no error but no user")
